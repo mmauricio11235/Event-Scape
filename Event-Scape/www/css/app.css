@@ -1,0 +1,81 @@
+/*
+ * Please see the included README.md file for license terms and conditions.
+ */
+
+
+
+.nav a {
+  color: white;
+  font-size: 11px;
+  font-weight: bold;   
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+
+.nav li {
+  display: inline;
+}
+
+.jumbo{
+    background-color: transparent;
+}
+
+.jumbo .container {
+  position: relative;
+  top:100px;
+  bottom:20px;
+  
+}
+
+.jumbo h1 {
+  color: #fff;
+  font-size: 48px;  
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
+  text-align: center;
+
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.jumbo p {
+  font-size: 20px;
+  color: black;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff
+}
+
+
+.jumbo li{
+display: inline;
+}
+
+.jumbo ul{
+ display: block;
+ text-align:center;
+}
+
+
+.menu {
+ float: left; 
+ padding-left: 0px;
+    
+}
+
+body { 
+  background: url(http://laverne.edu/campus-times/files/2013/09/130905_9624_SAG_CT.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+input, textarea  {
+    /* allow copy-paste */
+    -webkit-user-select: text ; -moz-user-select: text ; -ms-user-select: text ; user-select: text ;
+}
+
+.align-center {
+    text-align: center ;
+}
