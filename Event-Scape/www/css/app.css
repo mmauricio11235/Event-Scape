@@ -42,7 +42,7 @@
   color: black;
     font-weight: bold;
     text-align: center;
-    text-decoration: underline;
+    text-decoration: ;
     text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff
 }
 
@@ -52,8 +52,10 @@ display: inline;
 }
 
 .jumbo ul{
- display: block;
- text-align:center;
+margin: 0;
+padding: 0;
+list-style-type: none;
+text-align: center;
 }
 
 
