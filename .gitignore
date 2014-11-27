@@ -1,6 +1,7 @@
 .idea
 *.pyo
 *.pyc
+*.sqlite3
 
 # Compiled source #
 ###################
