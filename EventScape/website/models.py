@@ -15,7 +15,7 @@ class UserProfile(models.Model):
 
 
 class Event(models.Model):
-    host = models.ForeignKey(User)
+    host = models.ForeignKey(User, related_name='hosted_events')
     name = models.CharField(max_length=CHARFIELD_MAX_LENGTH)
     address = models.CharField(max_length=CHARFIELD_MAX_LENGTH)
     city = models.CharField(max_length=CHARFIELD_MAX_LENGTH)
@@ -24,7 +24,7 @@ class Event(models.Model):
     end = models.DateTimeField(null=True, blank=True)
     description = models.TextField()
     approved = models.CharField(max_length=1, choices=APPROVED_CHOICES, default='P')
-    attendees = models.ManyToManyField(User)
+    attendees = models.ManyToManyField(User, related_name='attended_events')
 
 
 class EventImage(models.Model):
