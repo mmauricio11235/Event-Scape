@@ -1,4 +1,6 @@
 .idea
+*.pyo
+*.pyc
 
 # Compiled source #
 ###################
