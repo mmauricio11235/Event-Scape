@@ -2,15 +2,26 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h1>Login</h1>
-<form action="" method="post">
-    {% crispy form %}
-</form>
-<div class="checkbox">
-<label>
-  <input type="checkbox"> Remember me
-</label>
-</div>
-<button type="button" class="btn btn-info">Log in</button> <br> <br>
-<a href = '{% url 'register' %}'>New User? Sign up here.</a>
+    <h1>Login</h1>
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            Invalid Login
+        </div>
+    {% endif %}
+    <form method="post">{% csrf_token %}
+        <div id="div_id_username" class="form-group"><label for="id_username" class="control-label  requiredField">
+            Username<span class="asteriskField">*</span></label>
+
+            <div class="controls "><input class="textinput textInput form-control" id="id_username" maxlength="254"
+                                          name="username" type="text"/></div>
+        </div>
+        <div id="div_id_password" class="form-group"><label for="id_password" class="control-label  requiredField">
+            Password<span class="asteriskField">*</span></label>
+
+            <div class="controls "><input class="textinput textInput form-control" id="id_password" name="password"
+                                          type="password"/></div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Log In"> <br> <br>
+        <a href='{% url 'register' %}'>New User? Sign up here.</a>
+    </form>
 {% endblock %}
