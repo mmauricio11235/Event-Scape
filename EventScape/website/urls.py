@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r'^$', 'django.contrib.auth.views.login', name="login"),
     url(r'^register/$', RegisterUser.as_view(), name="register"),
     url(r'^event/new$', AddEvent.as_view(), name="event-new"),
-    url(r'^event/(?P<pk>\d+)$', DetailView.as_view(model=Event), name="event-detail"),
+    url(r'^event/(?P<pk>\d+)$', DetailView.as_view(model=Event,
+                                                   template_name='event/detail.html'), name="event-detail"),
 )
