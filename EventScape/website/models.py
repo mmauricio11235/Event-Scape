@@ -36,4 +36,4 @@ class Tag(models.Model):
     name = models.CharField(max_length=CHARFIELD_MAX_LENGTH)
     approved = models.CharField(max_length=1, choices=APPROVED_CHOICES, default='P')
     users = models.ManyToManyField(User)
-    events = models.ManyToManyField(Event)
+    events = models.ManyToManyField(Event, related_name='tags')
