@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%load staticfiles%}
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -8,7 +9,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div style="height: 6em; width = auto;margin:0px; padding:0px;background-color:black;text-align:center;">
+<h1 style = "color:white;margin: auto;font-size:5em;display: inline-block;">EventScape</h1>
+<img src="{% static 'Eventscape logo.jpg'%}"style="height: 6em; width: auto;display: inline-block;float:right;"/>
+</div>
 <div class="container">
 {% block content %}{% endblock %}
 </div>
