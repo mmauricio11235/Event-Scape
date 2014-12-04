@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--Events from Database-->
+<div class = 'row'>
+  <div class="col-md-2">
+    <a href="#" class="thumbnail">
+      <img src="..." class="img-responsive" alt="Image Thumbnail">
+    </a>
+  </div>
+  <div class = 'col-md-4'>
+  	<h3><a href = "#">Title</a></h3>
+  	<ul class = 'list-unstyled list-inline'>
+  		<li><a href = "#">Location</a></li>
+  		<li><a href = "#">Date and time</a></li>
+  		<li><a href = "#">Hosted by</a></li>
+  	</ul>
+  	<p>High Life quinoa cardigan pug kale chips pork belly. Ugh Helvetica single-origin coffee, cred kogi kale chips four dollar toast. Disrupt viral Shoreditch, gastropub brunch mlkshk lomo. Cardigan Marfa sartorial pork belly. Odd Future Helvetica pork belly 90's Pitchfork messenger bag. Kale chips +1 lomo put a bird on it, Intelligentsia sriracha Williamsburg viral meggings. Odd Future food truck typewriter direct trade, Truffaut tilde church-key mumblecore deep v kale chips plaid beard keffiyeh.</p>
+  </div>
+  <div class="col-md-2">
+    <a href="#" class="thumbnail">
+      <img src="..." class="img-responsive" alt="Image Thumbnail">
+    </a>
+  </div>
+  <div class = 'col-md-4'>
+  	<h3><a href = "#">Title</a></h3>
+  	<ul class = 'list-unstyled list-inline'>
+  		<li><a href = "#">Location</a></li>
+  		<li><a href = "#">Date and time</a></li>
+  		<li><a href = "#">Hosted by</a></li>
+  	</ul>
+  	<p>High Life quinoa cardigan pug kale chips pork belly. Ugh Helvetica single-origin coffee, cred kogi kale chips four dollar toast. Disrupt viral Shoreditch, gastropub brunch mlkshk lomo. Cardigan Marfa sartorial pork belly. Odd Future Helvetica pork belly 90's Pitchfork messenger bag. Kale chips +1 lomo put a bird on it, Intelligentsia sriracha Williamsburg viral meggings. Odd Future food truck typewriter direct trade, Truffaut tilde church-key mumblecore deep v kale chips plaid beard keffiyeh.</p>
+  </div>
+
+</div>
+<!-- {% for obj in object_list %}
+	{% if obj.images %}
+		{{ obj.images[0].image }}
+	{% else %}
+		<img> "No Image" </img>
+	{% endif %}
+
+	{{ obj.name }}
+	{{ obj.address }} , {{ obj.city }}, {{ obj.state }}
+	{{ obj.start }}
+	{{ obj.host }}
+
+	{{ obj.description }}(max character limit) (see more)
+
+{% endfor %} -->
+
+<div class = "row">
+   	<div class = "col-md-6" style = 'border: 1px solid black'>
+        <h3 style = 'text-align:center'><a href = "#">Add an Event</a></h3>
+    </div>
+    <div class = "col-md-6" style = 'border: 1px solid black'>
+        <h3 style = 'text-align:center'><a href = "#">View my profile</a></h3>
+    </div>
+
+
+</div>
+
+{% endblock %}
