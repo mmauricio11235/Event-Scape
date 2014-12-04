@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1 style = "text-align: center;"><strong>{{object.name}}<strong> </h1>
+<div style = "height: 500px; width:auto; background-color: black; position: relative;">
+{% if object.images%}
+<img src = "http://kathleenjshields.files.wordpress.com/2013/09/cover-facebook-abstract.jpg" style = "height: 500px; width:auto;"/>
+{%else%}
+
+{%endif%} 
+</div> 
+<h2> Description </h2> 
+<p> {{object.description}} </p>
+<br> 
+<h2> Details <h2>
+<span id = "time"><strong>Time: </strong> {{object.start}} to {{object.end}} </span>
+<br>
+<span id = "address"> <strong>Address:</strong> {{object.address}}, {{object.city}}, {{object.state}}</span> 
+<span>  
+
+{% endblock %}
