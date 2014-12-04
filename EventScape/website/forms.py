@@ -2,6 +2,12 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Field, HTML
+from crispy_forms.bootstrap import FormActions
+
+from .models import Event, Tag
+
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
@@ -21,3 +27,39 @@ class RegistrationForm(UserCreationForm):
             user.save()
 
         return user
+
+
+class CreateEventForm(forms.ModelForm):
+    tags = forms.CharField()
+
+    class Meta:
+        model = Event
+        fields = ("name", "address", "city", "state", "start", "end", "description", "tags")
+
+    def save(self, commit=True):
+        event_object = super(CreateEventForm, self).save(commit=commit)
+
+        tags = self.cleaned_data['tags'].split()
+        for tag_name in tags:
+            tag_object = Tag.objects.get_or_create(name=tag_name)
+            tag_object.events.add(event_object)
+
+
+    def __init__(self, *args, **kwargs):
+        super(CreateEventForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.fields['tags'].help_text = "Enter tags separated by spaces."
+        self.helper.form_class = 'form-horizontal'
+        self.helper.layout = Layout(
+            'name',
+            'address',
+            'city',
+            'state',
+            'start',
+            'end',
+            'description',
+            'tags',
+            FormActions(
+                Submit('submit', 'Submit')
+            )
+        )
