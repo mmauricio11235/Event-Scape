@@ -1,13 +1,16 @@
-<!DOCTYPE html> 
-<html> 
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-<head>	 
-	<title> Register </title> 
-</head>
-
-<body> 
-	<h1> This is the registration page</h1> 
-
-
-</body> 
-</html>  
+{% block content %}
+<h1>Login</h1>
+<form action="" method="post">
+    {% crispy form %}
+</form>
+<div class="checkbox">
+<label>
+  <input type="checkbox"> Remember me
+</label>
+</div>
+<button type="button" class="btn btn-info">Log in</button> <br> <br>
+<a href = '{% url 'register' %}'>New User? Sign up here.</a>
+{% endblock %}

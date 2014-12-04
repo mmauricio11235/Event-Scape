@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Register</h1>
+<form action="" method="post">
+    {% crispy form %}
+</form>
+<button type="button" class="btn btn-info">Register </button>
+{% endblock %}
