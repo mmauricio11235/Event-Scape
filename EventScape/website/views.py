@@ -15,3 +15,7 @@ class AddEvent(CreateView):
     model = Event
     form_class = CreateEventForm
     template_name = 'event-new.html'
+
+    def form_valid(self, form):
+        form.instance.host = self.request.user
+        return super(CreateView, self).form_valid(form)

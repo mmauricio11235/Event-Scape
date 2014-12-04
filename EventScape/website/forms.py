@@ -57,7 +57,7 @@ class CreateEventForm(forms.ModelForm):
 
         tags = self.cleaned_data['tags'].split()
         for tag_name in tags:
-            tag_object = Tag.objects.get_or_create(name=tag_name)
+            tag_object, _ = Tag.objects.get_or_create(name=tag_name)
             tag_object.events.add(event_object)
 
 
