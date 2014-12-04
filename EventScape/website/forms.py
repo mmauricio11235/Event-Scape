@@ -25,8 +25,24 @@ class RegistrationForm(UserCreationForm):
 
         if commit:
             user.save()
-
         return user
+
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.layout = Layout(
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password1',
+            'password2',
+            FormActions(
+                Submit('submit', 'Submit')
+            )
+        )
 
 
 class CreateEventForm(forms.ModelForm):
