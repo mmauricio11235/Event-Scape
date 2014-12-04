@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, CreateEventForm
 from .models import Event
@@ -19,3 +20,8 @@ class AddEvent(CreateView):
     def form_valid(self, form):
         form.instance.host = self.request.user
         return super(CreateView, self).form_valid(form)
+
+
+class EventSearch(ListView):
+    model = Event
+    template_name = 'event/search.html'
