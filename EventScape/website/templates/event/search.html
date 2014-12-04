@@ -2,37 +2,24 @@
 
 {% block content %}
 <!--Events from Database-->
+{% for obj in object_list %}
 <div class = 'row'>
-  <div class="col-md-2">
+  <div class="col-md-3">
     <a href="#" class="thumbnail">
       <img src="..." class="img-responsive" alt="Image Thumbnail">
     </a>
   </div>
-  <div class = 'col-md-4'>
-  	<h3><a href = "#">Title</a></h3>
-  	<ul class = 'list-unstyled list-inline'>
-  		<li><a href = "#">Location</a></li>
-  		<li><a href = "#">Date and time</a></li>
-  		<li><a href = "#">Hosted by</a></li>
-  	</ul>
-  	<p>High Life quinoa cardigan pug kale chips pork belly. Ugh Helvetica single-origin coffee, cred kogi kale chips four dollar toast. Disrupt viral Shoreditch, gastropub brunch mlkshk lomo. Cardigan Marfa sartorial pork belly. Odd Future Helvetica pork belly 90's Pitchfork messenger bag. Kale chips +1 lomo put a bird on it, Intelligentsia sriracha Williamsburg viral meggings. Odd Future food truck typewriter direct trade, Truffaut tilde church-key mumblecore deep v kale chips plaid beard keffiyeh.</p>
+  <div class = 'col-md-9'>
+    <h3><a href = "#">{{ obj.name }}</a></h3>
+    <ul class = 'list-unstyled list-inline'>
+      <li><a href = "#">{{ obj.address }} , {{ obj.city }}, {{ obj.state }}</a></li>
+      <li><a href = "#"></a>{{ obj.start }}</li>
+      <li><a href = "#">Hosted by {{ obj.host }}</a></li>
+    </ul>
+    <p>{{ obj.description }} <a href = "#">See More </a></p>
   </div>
-  <div class="col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="..." class="img-responsive" alt="Image Thumbnail">
-    </a>
-  </div>
-  <div class = 'col-md-4'>
-  	<h3><a href = "#">Title</a></h3>
-  	<ul class = 'list-unstyled list-inline'>
-  		<li><a href = "#">Location</a></li>
-  		<li><a href = "#">Date and time</a></li>
-  		<li><a href = "#">Hosted by</a></li>
-  	</ul>
-  	<p>High Life quinoa cardigan pug kale chips pork belly. Ugh Helvetica single-origin coffee, cred kogi kale chips four dollar toast. Disrupt viral Shoreditch, gastropub brunch mlkshk lomo. Cardigan Marfa sartorial pork belly. Odd Future Helvetica pork belly 90's Pitchfork messenger bag. Kale chips +1 lomo put a bird on it, Intelligentsia sriracha Williamsburg viral meggings. Odd Future food truck typewriter direct trade, Truffaut tilde church-key mumblecore deep v kale chips plaid beard keffiyeh.</p>
-  </div>
-
 </div>
+{% endfor %}
 
 
 <div class = "row">
