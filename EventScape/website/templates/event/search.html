@@ -15,7 +15,7 @@
   <div class = 'col-md-9'>
     <h3><a  href='{% url 'event-detail' obj.id %}'>{{ obj.name }}</a></h3>
     <ul class = 'list-unstyled list-inline'>
-      <li><a href = "#">{{ obj.address }} , {{ obj.city }}, {{ obj.state }}</a></li>
+      <li><a target = "_blank" href = "http://maps.google.com/?q={{obj.address}}+{{obj.city}}+{{obj.state}}"> {{ obj.address }}, {{ obj.city }}, {{ obj.state }}</a></li>
       <li><a href = "#"></a>{{ obj.start }}</li>
       <li><a href = "#">Hosted by {{ obj.host }}</a></li>
     </ul>
