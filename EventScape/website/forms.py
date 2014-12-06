@@ -81,3 +81,25 @@ class CreateEventForm(forms.ModelForm):
                 Submit('submit', 'Submit')
             )
         )
+
+class SearchForm(forms.Form):
+    keywords = forms.CharField(required=False)
+    host = forms.CharField(required=False)
+    location = forms.CharField(required=False)
+    after = forms.DateTimeField(required=False)
+    before = forms.DateTimeField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(SearchForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'get'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.layout = Layout(
+            'keywords',
+            'location',
+            'after',
+            'before',
+            FormActions(
+                Submit('search', 'Search')
+            )
+        )

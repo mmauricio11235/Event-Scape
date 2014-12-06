@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView
 from django.db.models import Q
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
-from .forms import RegistrationForm, CreateEventForm
+from .forms import RegistrationForm, CreateEventForm, SearchForm
 from .models import Event
 
 class RegisterUser(CreateView):
@@ -20,7 +20,7 @@ class AddEvent(CreateView):
 
     def form_valid(self, form):
         form.instance.host = self.request.user
-        return super(CreateView, self).form_valid(form)
+        return super(AddEvent, self).form_valid(form)
 
 
 class EventSearch(ListView):
@@ -28,25 +28,45 @@ class EventSearch(ListView):
     template_name = 'event/search.html'
 
     def get_queryset(self):
-        try:
-            search_q = self.kwargs['query']
-        except:
-            search_q = ''
+        object_list = self.model.objects.all()
 
-        if search_q:
-            kws = search_q.split()
-            queries = []
-            for kw in kws:
-                queries.append(Q(name__contains=kw))
-                queries.append(Q(tags__name__contains=kw))
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            kws = form.cleaned_data['keywords']
+            if kws:
+                kws = kws.split()
+                queries = []
+                for kw in kws:
+                    queries.append(Q(name__contains=kw))
+                    queries.append(Q(description__contains=kw))
+                    queries.append(Q(tags__name__contains=kw))
 
-            query = queries.pop()
-            for q in queries:
-                query |= q
+                query = queries.pop()
+                for q in queries:
+                    query |= q
 
-            object_list = self.model.objects.filter(query)
-            
-        else:
-            object_list = self.model.objects.all()
+                object_list = object_list.filter(query)
+
+            host = form.cleaned_data['host']
+            if host:
+                object_list = object_list.filter(host__contains=host)
+
+            location = form.cleaned_data['location']
+            if location:
+                query = Q(address__contains=location) | Q(city__cotains=location) | Q(state__contains=location)
+                object_list = object_list.fitler(query)
+
+            after = form.cleaned_data['after']
+            if after:
+                object_list = object_list.filter(start__gte=after)
+
+            before = form.cleaned_data['before']
+            if before:
+                object_list = object_list.filter(end__lte=before)
 
         return object_list
+
+
+    def get_context_data(self, **kwargs):
+        context = super(EventSearch, self).get_context_data(**kwargs)
+        context['form'] = SearchForm()
