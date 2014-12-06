@@ -53,8 +53,8 @@ class EventSearch(ListView):
 
             location = form.cleaned_data['location']
             if location:
-                query = Q(address__contains=location) | Q(city__cotains=location) | Q(state__contains=location)
-                object_list = object_list.fitler(query)
+                query = Q(address__contains=location) | Q(city__contains=location) | Q(state__contains=location)
+                object_list = object_list.filter(query)
 
             after = form.cleaned_data['after']
             if after:
