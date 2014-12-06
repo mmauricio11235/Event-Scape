@@ -59,7 +59,7 @@ class CreateEventForm(forms.ModelForm):
         for tag_name in tags:
             tag_object, _ = Tag.objects.get_or_create(name=tag_name)
             tag_object.events.add(event_object)
-            
+
         return event_object
 
 
@@ -96,6 +96,7 @@ class SearchForm(forms.Form):
         self.helper.form_class = 'form-horizontal'
         self.helper.layout = Layout(
             'keywords',
+            'host',
             'location',
             'after',
             'before',
