@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" media="screen"
+ href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript"
+ src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+</script>
+<script type="text/javascript">
+	$(function () {
+		$('.datetimeinput').datetimepicker({
+			format: 'dd/MM/yyyy hh:mm:ss',
+			language: 'en-US'
+		});
+	});
+</script>
+{% endblock %}
+
 {% block content %}
 <h1>Post your Event</h1>
     {% crispy form %}
