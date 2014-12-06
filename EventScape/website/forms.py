@@ -59,6 +59,8 @@ class CreateEventForm(forms.ModelForm):
         for tag_name in tags:
             tag_object, _ = Tag.objects.get_or_create(name=tag_name)
             tag_object.events.add(event_object)
+            
+        return event_object
 
 
     def __init__(self, *args, **kwargs):
