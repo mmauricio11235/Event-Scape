@@ -37,3 +37,22 @@
 </div>
 
 {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" media="screen"
+ href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.min.css">
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript"
+ src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js">
+</script>
+<script type="text/javascript">
+	$(function () {
+		$('.date').datetimepicker({
+			format: 'DD/MM/YYYY hh:mm:ss',
+			language: 'en-US'
+		});
+	});
+</script>
+{% endblock %}

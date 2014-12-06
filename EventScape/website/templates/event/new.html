@@ -3,18 +3,17 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" media="screen"
- href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+ href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.min.css">
 {% endblock %}
 
 {% block js %}
-
 <script type="text/javascript"
- src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+ src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js">
 </script>
 <script type="text/javascript">
 	$(function () {
-		$('.datetimeinput').datetimepicker({
-			format: 'dd/MM/yyyy hh:mm:ss',
+		$('.date').datetimepicker({
+			format: 'DD/MM/YYYY hh:mm:ss',
 			language: 'en-US'
 		});
 	});

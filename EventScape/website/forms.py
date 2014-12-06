@@ -73,8 +73,8 @@ class CreateEventForm(forms.ModelForm):
             'address',
             'city',
             'state',
-            'start',
-            'end',
+            Field('start', template="layout/datetimefield.html"),
+            Field('end', template="layout/datetimefield.html"),
             'description',
             'tags',
             FormActions(
@@ -98,8 +98,8 @@ class SearchForm(forms.Form):
             'keywords',
             'host',
             'location',
-            'after',
-            'before',
+            Field('after', template="layout/datetimefield.html"),
+            Field('before', template="layout/datetimefield.html"),
             FormActions(
                 Submit('search', 'Search')
             )
