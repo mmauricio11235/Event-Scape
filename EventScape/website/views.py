@@ -69,4 +69,5 @@ class EventSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EventSearch, self).get_context_data(**kwargs)
-        context['form'] = SearchForm()
+        context['form'] = SearchForm(initial=self.request.GET)
+        return context
