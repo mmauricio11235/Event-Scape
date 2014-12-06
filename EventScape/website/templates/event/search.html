@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+{% crispy form %}
 <!--Events from Database-->
 {% for obj in object_list %}
+
 <div class = 'row'>
   <div class="col-md-3">
     <a href="#" class="thumbnail">
@@ -24,10 +27,10 @@
 
 <div class = "row">
    	<div class = "col-md-6" style = 'border: 1px solid black'>
-        <h3 style = 'text-align:center'><a href = "#">Add an Event</a></h3>
+        <h3 style = 'text-align:center'><a href = "new">Add an Event</a></h3>
     </div>
     <div class = "col-md-6" style = 'border: 1px solid black'>
-        <h3 style = 'text-align:center'><a href = "#">View my profile</a></h3>
+        <h3 style = 'text-align:center'><a href = "../../">View my profile</a></h3>
     </div>
 
 
