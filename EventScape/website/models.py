@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 CHARFIELD_MAX_LENGTH = 255
@@ -25,6 +26,9 @@ class Event(models.Model):
     description = models.TextField()
     approved = models.CharField(max_length=1, choices=APPROVED_CHOICES, default='P')
     attendees = models.ManyToManyField(User, related_name='attended_events')
+
+    def get_absolute_url(self):
+        return reverse('event-detail', args=[str(self.id)])
 
 
 class EventImage(models.Model):
