@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView
+from django.contrib.auth.models import User
 
 from .views import RegisterUser, EventAdd, EventEdit, EventSearch
 from .models import Event
@@ -18,5 +19,9 @@ urlpatterns = patterns('',
     url(r'^event/(?P<pk>\d+)/$', DetailView.as_view(model=Event,
                                                     template_name='event/detail.html'), name="event-detail"),
     url(r'^event/search$', EventSearch.as_view(), name="event-search"),
+	url(r'^user/profile/(?P<pk>\d+)/$', DetailView.as_view(model=User,
+    												template_name='website/profile.html'),
+    												name="user-profile"),
+
 )
 
