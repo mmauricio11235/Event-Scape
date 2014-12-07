@@ -6,6 +6,12 @@ from django.views.generic.edit import DeleteView
 from .views import RegisterUser, EventAdd, EventEdit, EventSearch
 from .models import Event
 
+###FOR TESTING ONLY###
+from django.conf import settings
+from django.conf.urls.static import static
+######################
+
+
 urlpatterns = patterns('',
     url(r'^$', 'django.contrib.auth.views.login', name="login"),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name="logout"),
@@ -18,5 +24,5 @@ urlpatterns = patterns('',
     url(r'^event/(?P<pk>\d+)/$', DetailView.as_view(model=Event,
                                                     template_name='event/detail.html'), name="event-detail"),
     url(r'^event/search$', EventSearch.as_view(), name="event-search"),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #FOR TESTING ONLY
 

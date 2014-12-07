@@ -3,16 +3,16 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Field, HTML
+from crispy_forms.layout import Layout, Submit, Field
 from crispy_forms.bootstrap import FormActions
 
-from .models import Event, Tag
+from .models import Event, Tag, EventImage
 
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
-    tags  = forms.CharField()
+    tags = forms.CharField()
 
     class Meta:
         model = User
@@ -32,7 +32,6 @@ class RegistrationForm(UserCreationForm):
             tag_object.users.add(user)
 
         return user
-
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -55,6 +54,9 @@ class RegistrationForm(UserCreationForm):
 
 class EventForm(forms.ModelForm):
     tags = forms.CharField()
+    image1 = forms.ImageField(required=False)
+    image2 = forms.ImageField(required=False)
+    image3 = forms.ImageField(required=False)
 
     class Meta:
         model = Event
@@ -62,6 +64,23 @@ class EventForm(forms.ModelForm):
 
     def save(self, commit=True):
         event_object = super(EventForm, self).save(commit=commit)
+
+        event_object.images.all().delete()
+
+        image1 = self.cleaned_data['image1']
+        if image1:
+            eimage1 = EventImage(event=event_object, image=image1)
+            eimage1.save()
+
+        image2 = self.cleaned_data['image2']
+        if image2:
+            eimage2 = EventImage(event=event_object, image=image2)
+            eimage2.save()
+
+        image3 = self.cleaned_data['image3']
+        if image3:
+            eimage3 = EventImage(event=event_object, image=image3)
+            eimage3.save()
 
         event_object.approved = 'P'
         event_object.tags.all().delete()
@@ -71,7 +90,6 @@ class EventForm(forms.ModelForm):
             tag_object.events.add(event_object)
 
         return event_object
-
 
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)
@@ -87,10 +105,14 @@ class EventForm(forms.ModelForm):
             Field('end', template="layout/datetimefield.html"),
             'description',
             'tags',
+            'image1',
+            'image2',
+            'image3',
             FormActions(
                 Submit('submit', 'Submit')
             )
         )
+
 
 class SearchForm(forms.Form):
     keywords = forms.CharField(required=False)
