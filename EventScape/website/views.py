@@ -1,10 +1,20 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
+from django.contrib.auth.views import login
+from django.shortcuts import redirect
+from django.conf import settings
+
 from .forms import RegistrationForm, EventForm, SearchForm
 from .models import Event
+
+def login_or_redirect(request):
+    if  request.user.is_authenticated():
+        return redirect(settings.LOGIN_REDIRECT_URL)
+    else:
+        return login(request)
 
 class RegisterUser(CreateView):
     model = User
@@ -24,13 +34,23 @@ class EventAdd(CreateView):
 
 
 class EventEdit(UpdateView):
-    model = Event
     form_class = EventForm
     template_name = 'event/new.html'
 
     def get_initial(self):
         tags = " ".join([t.name for t in self.object.tags.all()])
         return {'tags': tags}
+
+    def get_queryset(self):
+        return Event.objects.filter(host=self.request.user)
+
+
+class EventDelete(DeleteView):
+    template_name = 'event/delete_confirm.html'
+    success_url = reverse_lazy('event-search')
+
+    def get_queryset(self):
+        return Event.objects.filter(host=self.request.user)
 
 
 class EventSearch(ListView):
