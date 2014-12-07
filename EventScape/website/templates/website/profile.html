@@ -5,6 +5,7 @@
          alt="Generic placeholder thumbnail"style ="width:75px;height:auto;" >
     </a>
 <h2> {{object.first_name}} {{object.last_name}}</h2>
+<h3>Email: {{object.email}} </h3>
 
 
 <h2>Your events</h2>
@@ -27,11 +28,14 @@
 <!-- </div>
 {% endfor %} -->
 <div class = "row">
-   	<div class = "col-md-6" style = 'border: 1px solid black'>
+   	<div class = "col-md-4" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href='{% url 'event-new' %}'>Add an Event</a></h3>
     </div>
-    <div class = "col-md-6" style = 'border: 1px solid black'>
+    <div class = "col-md-4" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href = "../../">View all events</a></h3>
+    </div>
+    <div class = "col-md-4" style = 'border: 1px solid black'>
+        <h3 style = 'text-align:center'><a href='{% url 'user-edit' %}'>Edit Profile</a></h3>
     </div>
 </div>
 {% endblock %}
