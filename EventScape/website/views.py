@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import login
 from django.shortcuts import redirect
 from django.conf import settings
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from .forms import RegistrationForm, EventForm, SearchForm
 from .models import Event
@@ -106,3 +108,31 @@ class EventSearch(ListView):
         context = super(EventSearch, self).get_context_data(**kwargs)
         context['form'] = SearchForm(initial=self.request.GET)
         return context
+
+
+@login_required
+def event_attend(request):
+    if request.method == 'GET':
+        eid = request.GET['eid']
+        try:
+            e = Event.objects.get(pk=int(eid))
+            e.attendees.add(request.user)
+            return HttpResponse("true")
+        except:
+            return HttpResponse("error")
+    else:
+        return HttpResponse("false")
+
+
+@login_required
+def user_follow(request):
+    if request.method == 'GET':
+        uid = request.GET['uid']
+        try:
+            u = User.objects.get(pk=int(uid))
+            u.userprofile.follows.add(request.user.userprofile)
+            return HttpResponse("true")
+        except:
+            return HttpResponse("error")
+    else:
+        return HttpResponse("false")

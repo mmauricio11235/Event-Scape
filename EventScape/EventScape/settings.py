@@ -94,4 +94,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'event-search'
-

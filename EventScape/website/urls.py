@@ -3,7 +3,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from .views import RegisterUser, EventAdd, EventEdit, EventSearch, EventDelete, login_or_redirect
+from .views import RegisterUser, EventAdd, EventEdit, EventSearch, EventDelete, login_or_redirect, event_attend, user_follow
 from .models import Event
 
 # ##FOR TESTING ONLY###
@@ -26,5 +26,7 @@ urlpatterns = patterns('',
                        url(r'^user/profile/(?P<pk>\d+)/$', login_required(DetailView.as_view(model=User,
                                                                                              template_name='website/profile.html')),
                            name="user-profile"),
+                       url(r'^event/attend/$', event_attend, name="event-attend"),
+                       url(r'^user/follow/$', user_follow, name="user_follow"),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # FOR TESTING ONLY
 
