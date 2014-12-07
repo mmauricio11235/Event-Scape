@@ -5,7 +5,6 @@ from django.views.generic.edit import DeleteView
 
 from .views import RegisterUser, EventAdd, EventEdit, EventSearch
 from .models import Event
-from .forms import EventForm
 
 urlpatterns = patterns('',
     url(r'^$', 'django.contrib.auth.views.login', name="login"),

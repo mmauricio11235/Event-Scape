@@ -40,7 +40,12 @@ class EventSearch(ListView):
     def get_queryset(self):
         object_list = self.model.objects.all()
 
-        form = SearchForm(self.request.GET)
+
+        initial = self.request.GET
+        initial._mutable = True
+        if not initial.get('keywords'):
+            initial['keywords'] = " ".join([t.name for t in self.request.user.tags.all()])
+        form = SearchForm(initial)
         if form.is_valid():
             kws = form.cleaned_data['keywords']
             if kws:

@@ -12,25 +12,32 @@ class RegistrationForm(UserCreationForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
+    tags  = forms.CharField()
 
     class Meta:
         model = User
         fields = ("username", "first_name", "last_name", "email", "password1", "password2")
 
-    def save(self, commit=True):
+    def save(self):
         user = super(RegistrationForm, self).save(commit=False)
         user.first_name = self.cleaned_data.get("first_name")
         user.last_name = self.cleaned_data.get("last_name")
         user.email = self.cleaned_data.get("email")
 
-        if commit:
-            user.save()
+        user.save()
+
+        tags = self.cleaned_data['tags'].split()
+        for tag_name in tags:
+            tag_object, _ = Tag.objects.get_or_create(name=tag_name)
+            tag_object.users.add(user)
+
         return user
 
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.fields['tags'].help_text = "Enter keywords of interest."
         self.helper.form_class = 'form-horizontal'
         self.helper.layout = Layout(
             'username',
@@ -39,6 +46,7 @@ class RegistrationForm(UserCreationForm):
             'email',
             'password1',
             'password2',
+            'tags',
             FormActions(
                 Submit('submit', 'Submit')
             )
