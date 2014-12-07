@@ -29,7 +29,7 @@ class UserRegister(CreateView):
 
 class UserEdit(UpdateView):
     form_class = RegistrationForm
-    template = 'user/edit.html'
+    template_name = 'user/edit.html'
 
     def get_initial(self):
         tags = " ".join([t.name for t in self.object.tags.all()])
