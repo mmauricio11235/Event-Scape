@@ -45,7 +45,7 @@ class RegistrationForm(UserCreationForm):
         )
 
 
-class CreateEventForm(forms.ModelForm):
+class EventForm(forms.ModelForm):
     tags = forms.CharField()
 
     class Meta:
@@ -53,8 +53,10 @@ class CreateEventForm(forms.ModelForm):
         fields = ("name", "address", "city", "state", "start", "end", "description", "tags")
 
     def save(self, commit=True):
-        event_object = super(CreateEventForm, self).save(commit=commit)
+        event_object = super(EventForm, self).save(commit=commit)
 
+        event_object.approved = 'P'
+        event_object.tags.delete()
         tags = self.cleaned_data['tags'].split()
         for tag_name in tags:
             tag_object, _ = Tag.objects.get_or_create(name=tag_name)
@@ -64,7 +66,7 @@ class CreateEventForm(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        super(CreateEventForm, self).__init__(*args, **kwargs)
+        super(EventForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.fields['tags'].help_text = "Enter tags separated by spaces."
         self.helper.form_class = 'form-horizontal'

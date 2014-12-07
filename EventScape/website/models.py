@@ -27,6 +27,9 @@ class Event(models.Model):
     approved = models.CharField(max_length=1, choices=APPROVED_CHOICES, default='P')
     attendees = models.ManyToManyField(User, related_name='attended_events')
 
+    def __str__(self):
+        return self.name
+
     def get_absolute_url(self):
         return reverse('event-detail', args=[str(self.id)])
 
@@ -41,3 +44,6 @@ class Tag(models.Model):
     approved = models.CharField(max_length=1, choices=APPROVED_CHOICES, default='P')
     users = models.ManyToManyField(User)
     events = models.ManyToManyField(Event, related_name='tags')
+
+    def __str__(self):
+        return self.name

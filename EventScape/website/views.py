@@ -1,9 +1,9 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.db.models import Q
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
-from .forms import RegistrationForm, CreateEventForm, SearchForm
+from .forms import RegistrationForm, EventForm, SearchForm
 from .models import Event
 
 class RegisterUser(CreateView):
@@ -13,14 +13,24 @@ class RegisterUser(CreateView):
     template_name = 'registration/register.html'
 
 
-class AddEvent(CreateView):
+class EventAdd(CreateView):
     model = Event
-    form_class = CreateEventForm
+    form_class = EventForm
     template_name = 'event/new.html'
 
     def form_valid(self, form):
         form.instance.host = self.request.user
-        return super(AddEvent, self).form_valid(form)
+        return super(EventAdd, self).form_valid(form)
+
+
+class EventEdit(UpdateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'event/new.html'
+
+    def get_initial(self):
+        tags = " ".join([t.name for t in self.object.tags.all()])
+        return {'tags': tags}
 
 
 class EventSearch(ListView):
