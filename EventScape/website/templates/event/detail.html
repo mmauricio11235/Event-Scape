@@ -16,7 +16,7 @@
 {% endfor %}
 </div>
 
-<div style= "margin-bottom: 100px; border: solid 3px;margin-top:10px"> 
+<div style= "margin-bottom: 10px; border: solid 3px;margin-top:10px"> 
 <h2> Description </h2> 
 <p> {{object.description}} </p>
 <br> 
@@ -26,6 +26,13 @@
 <span id = "address"> <strong>Address:</strong> {{object.address}}, {{object.city}}, {{object.state}}</span>
 </div> 
 {% if user and object.host = user %}
+<div class = "admin-comments">
+    <h2> Comments from Admin </h2> 
+    <p>{{object.admin_comments}}</p>
+    <p> Status: {{object.get_approved_display}}</p>
+
+</div>
+
 <div class = "row">
    	<div class = "col-md-4" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href='{% url 'event-edit' object.id%}'>Edit Event</a></h3>
@@ -38,13 +45,14 @@
         <h3 style = 'text-align:center'><a href='{% url 'user-profile' user.pk %}'>View my profile</a></h3>
     </div>
 {% else %}
+
 <div class = "row">
     <div class = "col-md-4" style = 'border: 1px solid black'>
-        <h3 style = 'text-align:center'><a href='{% url 'event-edit' object.id%}'>Attend Event</a></h3>
+        <h3 style = 'text-align:center'><a href='#'>Attend Event</a></h3>
     </div>
     <div class = "col-md-4" style = 'border: 1px solid black'>
         <!-- Not working currently -->
-        <h3 style = 'text-align:center'><a href='{% url 'event-delete' object.id%}'>Share Event</a></h3>
+        <h3 style = 'text-align:center'><a href='#'>Share Event</a></h3>
     </div>
     <div class = "col-md-4" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href='{% url 'user-profile' user.pk %}'>View my profile</a></h3>
