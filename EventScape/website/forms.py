@@ -56,7 +56,7 @@ class EventForm(forms.ModelForm):
         event_object = super(EventForm, self).save(commit=commit)
 
         event_object.approved = 'P'
-        event_object.tags.delete()
+        event_object.tags.all().delete()
         tags = self.cleaned_data['tags'].split()
         for tag_name in tags:
             tag_object, _ = Tag.objects.get_or_create(name=tag_name)
