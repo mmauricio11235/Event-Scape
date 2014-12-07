@@ -26,6 +26,7 @@ class Event(models.Model):
     description = models.TextField()
     approved = models.CharField(max_length=1, choices=APPROVED_CHOICES, default='P')
     attendees = models.ManyToManyField(User, related_name='attended_events')
+    admin_comments = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
