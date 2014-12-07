@@ -12,17 +12,31 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, EventForm, SearchForm
 from .models import Event
 
+
 def login_or_redirect(request):
-    if  request.user.is_authenticated():
+    if request.user.is_authenticated():
         return redirect(settings.LOGIN_REDIRECT_URL)
     else:
         return login(request)
 
-class RegisterUser(CreateView):
+
+class UserRegister(CreateView):
     model = User
     form_class = RegistrationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/register.html'
+
+
+class UserEdit(UpdateView):
+    form_class = RegistrationForm
+    template = 'user/edit.html'
+
+    def get_initial(self):
+        tags = " ".join([t.name for t in self.object.tags.all()])
+        return {'tags': tags}
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
 class EventAdd(CreateView):
@@ -61,7 +75,6 @@ class EventSearch(ListView):
 
     def get_queryset(self):
         object_list = self.model.objects.all()
-
 
         initial = self.request.GET
         initial._mutable = True
