@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{%load staticfiles%}
 
 {% block content %}
 {% crispy form %}
@@ -8,8 +9,13 @@
 
 <div class = 'row'>
   <div class="col-md-3">
+
     <a href="#" class="thumbnail">
-      <img src="..." class="img-responsive" alt="Image Thumbnail">
+      {% if obj.images.all.0 %}
+      <img src="{{obj.images.all.0.image.url}}" class="img-responsive" alt="Image Thumbnail">
+      {%else%}
+      <img src="{% static 'Eventscape logo.jpg'%}"/>
+      {%endif%}
     </a>
   </div>
   <div class = 'col-md-9'>
