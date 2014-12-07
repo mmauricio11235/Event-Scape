@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Manage your subscriptions</h2>
+
+<h2>Your events</h2>
+<!-- {% for obj in object_list %}
+<div class = 'row'>
+  <div class="col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." class="img-responsive" alt="Image Thumbnail">
+    </a>
+  </div>
+  <div class = 'col-md-9'>
+    <h3><a href = "#">{{ obj.name }}</a></h3>
+    <ul class = 'list-unstyled list-inline'>
+      <li><a href = "#">{{ obj.address }} , {{ obj.city }}, {{ obj.state }}</a></li>
+      <li><a href = "#"></a>{{ obj.start }}</li>
+      <li><a href = "#">Hosted by {{ obj.host }}</a></li>
+    </ul>
+    <p>{{ obj.description }} <a href = "#">See More </a></p>
+  </div> -->
+<!-- </div>
+{% endfor %} -->
+<div class = "row">
+   	<div class = "col-md-6" style = 'border: 1px solid black'>
+        <h3 style = 'text-align:center'><a href = "new">Add an event</a></h3>
+    </div>
+    <div class = "col-md-6" style = 'border: 1px solid black'>
+        <h3 style = 'text-align:center'><a href = "../../">View all events</a></h3>
+    </div>
+
+
+</div>
+{% endblock %}
