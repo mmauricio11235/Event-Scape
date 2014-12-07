@@ -16,6 +16,9 @@
   -o-background-size: cover;
   background-size: cover;margin:0px;padding:0px;">
 <div style="height: 6em; width = auto;margin:0px; padding:0px;background-color:black;text-align:center;">
+  {% if user.is_authenticated %}
+  <a style = "float: left; display: inline-block; margin-left: 15px;margin-top: 20px;"> Log out </a>
+  {% endif %}  
 <h1 style = "color:white;margin: auto;font-size:5em;display:inline-block;">EventScape</h1>
 <img src="{% static 'Eventscape logo.jpg'%}"style="height: 6em; width: auto;display: inline-block;float:right;"/>
 </div>
