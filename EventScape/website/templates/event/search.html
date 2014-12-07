@@ -10,7 +10,7 @@
 <div class = 'row'>
   <div class="col-md-3">
 
-    <a href="#" class="thumbnail">
+    <a href='{% url 'event-detail' obj.id %}' class="thumbnail">
       {% if obj.images.all.0 %}
       <img src="{{obj.images.all.0.image.url}}" class="img-responsive" alt="Image Thumbnail">
       {%else%}
