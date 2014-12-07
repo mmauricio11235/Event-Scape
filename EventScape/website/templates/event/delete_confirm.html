@@ -1,0 +1,8 @@
+{% block content %}
+<form action="" method="post">
+	{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object.name }}"?</p>
+    <input type="submit" value="Confirm" />
+    <a class = "button" href='{% url 'event-detail' object.id %}'> go back</a> 
+</form>
+{% endblock %}
