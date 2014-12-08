@@ -120,10 +120,12 @@ class SearchForm(forms.Form):
     location = forms.CharField(required=False)
     after = forms.DateTimeField(required=False)
     before = forms.DateTimeField(required=False)
+    subscribed = forms.BooleanField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(SearchForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.fields['subscribed'].label = "Only display events by hosts whom I am subscribed to"
         self.helper.form_method = 'get'
         self.helper.form_class = 'form-horizontal'
         self.helper.layout = Layout(
@@ -132,6 +134,7 @@ class SearchForm(forms.Form):
             'location',
             Field('after', template="layout/datetimefield.html"),
             Field('before', template="layout/datetimefield.html"),
+            'subscribed',
             FormActions(
                 Submit('search', 'Search')
             )

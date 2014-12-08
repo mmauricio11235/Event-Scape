@@ -78,7 +78,7 @@ class EventSearch(ListView):
 
         initial = self.request.GET
         initial._mutable = True
-        if not initial.get('keywords'):
+        if initial.get('keywords') is None:
             initial['keywords'] = " ".join([t.name for t in self.request.user.tags.all()])
         form = SearchForm(initial)
         if form.is_valid():
@@ -113,6 +113,14 @@ class EventSearch(ListView):
             before = form.cleaned_data['before']
             if before:
                 object_list = object_list.filter(end__lte=before)
+
+            subscribed = form.cleaned_data['subscribed']
+            if subscribed:
+                follows = [u.user for u in self.request.user.userprofile.follows.all()]
+                object_list = object_list.filter(host__in=follows)
+
+        else:
+            object_list = {}
 
         return object_list
 
