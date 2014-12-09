@@ -9,7 +9,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegistrationForm, EventForm, SearchForm
+from .forms import RegistrationForm, EventForm, SearchForm, UserEditForm
 from .models import Event
 
 
@@ -28,8 +28,12 @@ class UserRegister(CreateView):
 
 
 class UserEdit(UpdateView):
-    form_class = RegistrationForm
+    form_class = UserEditForm
     template_name = 'user/edit.html'
+
+
+    def get_success_url(self):
+        return reverse_lazy('user-profile', args=(self.request.user.pk,))
 
     def get_initial(self):
         tags = " ".join([t.name for t in self.object.tags.all()])

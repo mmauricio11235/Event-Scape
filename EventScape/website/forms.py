@@ -52,6 +52,26 @@ class RegistrationForm(UserCreationForm):
         )
 
 
+class UserEditForm(RegistrationForm):
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email", "password1", "password2")
+
+    def __init__(self, *args, **kwargs):
+        super(UserEditForm, self).__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            'first_name',
+            'last_name',
+            'email',
+            'password1',
+            'password2',
+            'tags',
+            FormActions(
+                Submit('submit', 'Submit')
+            )
+        )
+
+
 class EventForm(forms.ModelForm):
     tags = forms.CharField()
     image1 = forms.ImageField(required=False)
