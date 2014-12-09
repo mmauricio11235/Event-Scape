@@ -103,7 +103,7 @@ class EventSearch(ListView):
 
             host = form.cleaned_data['host']
             if host:
-                object_list = object_list.filter(host__contains=host)
+                object_list = object_list.filter(host__username__contains=host)
 
             location = form.cleaned_data['location']
             if location:
