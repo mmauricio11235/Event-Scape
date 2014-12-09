@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     {% block css %}{% endblock %}
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.1/moment.min.js"></script>
 </head>
@@ -20,7 +21,7 @@
   <a style = "float: left; display: inline-block; margin-left: 15px;margin-top: 20px;font-size: 2em;" href='{% url 'logout' %}'> Log out </a>
   {% endif %}  
 <h1 style = "color:white;margin: auto;font-size:5em;display:inline-block;">EventScape</h1>
-<img src="{% static 'Eventscape logo.jpg'%}"style="height: 6em; width: auto;display: inline-block;float:right;"/>
+<a href='{% url 'event-search' %}'><img src="{% static 'Eventscape logo.jpg'%}"style="height: 6em; width: auto;display: inline-block;float:right;"/></a>
 </div>
 <div class="container">
 {% block content %}{% endblock %}
