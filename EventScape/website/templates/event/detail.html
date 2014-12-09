@@ -6,13 +6,13 @@
          alt="Generic placeholder thumbnail"style ="width:75px;height:auto;" >
     </a>
     <!-- TODO -->
-    <a class = "attend" data-event="{{object.id}}" href='#'style = "display:inline-block;float:right;"><img src="http://www.decodeunicode.org/en/data/glyph/196x196/FF0B.gif"
+    <a class = "attend" data-event="{{object.id}}" href='#'style = "display:inline-block;float:right;"><img  clas = "attendImg" src="http://www.decodeunicode.org/en/data/glyph/196x196/FF0B.gif"
          alt="Generic placeholder thumbnail"style ="width:75px;height:auto;" >
     </a>
 <h1 style = "text-align: center;"><strong>{{object.name}}</strong> </h1>
 <div class = "jumbotron" style= "margin:0px; padding:0px;">
 {% for i in object.images.all %}
-    <img src="{{ i.image.url }}" style = "width: 500px; height: auto;">
+    <img src="{{ i.image.url }}" style = "width: 500px; height: auto;   ">
 {% endfor %}
 </div>
 
@@ -47,14 +47,10 @@
 {% else %}
 
 <div class = "row">
-    <div class = "col-md-4 attend" data-event="{{object.id}}" style = 'border: 1px solid black'>
+    <div class = "col-md-6 attend" data-event="{{object.id}}" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href='#'>Attend Event</a></h3>
     </div>
-    <div class = "col-md-4" style = 'border: 1px solid black'>
-        <!-- Not working currently -->
-        <h3 style = 'text-align:center'><a href='#'>Share Event</a></h3>
-    </div>
-    <div class = "col-md-4" style = 'border: 1px solid black'>
+    <div class = "col-md-6" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href='{% url 'user-profile' user.pk %}'>View my profile</a></h3>
     </div>
 
