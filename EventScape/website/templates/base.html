@@ -20,8 +20,9 @@
   {% if user.is_authenticated %}
   <a style = "float: left; display: inline-block; margin-left: 15px;margin-top: 20px;font-size: 2em;" href='{% url 'logout' %}'> Log out </a>
   {% endif %}  
-<h1 style = "color:white;margin: auto;font-size:5em;display:inline-block;">EventScape</h1>
+<h1 style = "color:white;margin: auto;font-size:5em;padding-left: 250px;display:inline;">EventScape</h1>
 <a href='{% url 'event-search' %}'><img src="{% static 'Eventscape logo.jpg'%}"style="height: 6em; width: auto;display: inline-block;float:right;"/></a>
+<a href='{% url 'user-profile' user.pk %}' style = "float: right; display: inline-block; margin-left: 15px;margin-top: 20px;font-size: 2em;">{{user.username}}</a>
 </div>
 <div class="container">
 {% block content %}{% endblock %}
