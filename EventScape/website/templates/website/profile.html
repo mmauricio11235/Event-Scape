@@ -10,9 +10,9 @@
 <h3 style ="text-align: center; font-size: 2em;"> Tags : {{object.tags.all|join:", "}}</h3> 
 
 
-<h1 style="border-top: solid 1px;">Your events</h1>
+<h1 style="border-top: solid 1px;">Hosted Events</h1>
 
-{% for y in user.hosted_events.all %}
+{% for y in object.hosted_events.all %}
 <div class = 'row'>
   <div class="col-md-3">
 
@@ -38,8 +38,8 @@
 
 
 <!-- This should display  -->
-<h1 style="border-top: solid 1px;"> Events You're Attending </h1> 
-{% for x in user.attended_events.all %}
+<h1 style="border-top: solid 1px;"> Events Attending </h1> 
+{% for x in object.attended_events.all %}
 <div class = 'row'>
   <div class="col-md-3">
 
@@ -70,8 +70,11 @@
     <div class = "col-md-4" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href = "../../">View all events</a></h3>
     </div>
+    
+    {% if object.id == user.id %}
     <div class = "col-md-4" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href='{% url 'user-edit' %}'>Edit Profile</a></h3>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
