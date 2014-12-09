@@ -9,7 +9,12 @@
     <a class = "attend" data-event="{{object.id}}" href='#'style = "display:inline-block;float:right;"><img  clas = "attendImg" src="http://www.decodeunicode.org/en/data/glyph/196x196/FF0B.gif"
          alt="Generic placeholder thumbnail"style ="width:75px;height:auto;" >
     </a>
+<div class="titleOfEvent"> 
 <h1 style = "text-align: center;"><strong>{{object.name}}</strong> </h1>
+{% if object in user.attended_events.all %}
+<h2 style = "text-align: center;color: blue;"> Attending! </h2>
+{% endif %} 
+</div>
 <div class = "jumbotron" style= "margin:0px; padding:0px;">
 {% for i in object.images.all %}
     <img src="{{ i.image.url }}" style = "width: 500px; height: auto;   ">

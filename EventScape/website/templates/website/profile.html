@@ -75,6 +75,10 @@
     <div class = "col-md-4" style = 'border: 1px solid black'>
         <h3 style = 'text-align:center'><a href='{% url 'user-edit' %}'>Edit Profile</a></h3>
     </div>
+    {% else %}
+    <div class = "col-md-4 follow" user-id="{{object.id}}" style = 'border: 1px solid black'>
+        <h3 style = 'text-align:center'><a> Subscribe to User</a></h3>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
