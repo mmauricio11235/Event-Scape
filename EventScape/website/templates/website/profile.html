@@ -15,7 +15,8 @@
 {% for y in user.hosted_events.all %}
 <div class = 'row'>
   <div class="col-md-3">
-    <a href="#" class="thumbnail">
+
+    <a href='{% url 'event-detail' y.id %}' class="thumbnail">
       {% if y.images.all.0 %}
       <img src="{{y.images.all.0.image.url}}" class="img-responsive" alt="Image Thumbnail">
       {%else%}
@@ -24,15 +25,15 @@
     </a>
   </div>
   <div class = 'col-md-9'>
-    <h3><a href = "#">{{ y.name }}</a></h3>
+    <h3><a  href='{% url 'event-detail' y.id %}'>{{ y.name }}</a></h3>
     <ul class = 'list-unstyled list-inline'>
-      <li><a href = "#">{{ y.address }} , {{ y.city }}, {{ y.state }}</a></li>
+      <li><a target = "_blank" href = "http://maps.google.com/?q={{y.address}}+{{y.city}}+{{y.state}}"> {{ y.address }}, {{ y.city }}, {{ y.state }}</a></li>
       <li><a href = "#"></a>{{ y.start }}</li>
-      <li><a href = "#">Hosted by {{ y.host }}</a></li>
+      <li><a href='{% url 'user-profile' y.host.pk %}'>Hosted by {{ y.host }}</a></li>
     </ul>
-    <p>{{ y.description }} <a href = "#">See More </a></p>
-  </div> 
- </div>
+    <p>{{ y.description }} <a href='{% url 'event-detail' y.id %}'>See More </a></p>
+  </div>
+</div>
 {% endfor %}
 
 
@@ -41,7 +42,8 @@
 {% for x in user.attended_events.all %}
 <div class = 'row'>
   <div class="col-md-3">
-    <a href="#" class="thumbnail">
+
+    <a href='{% url 'event-detail' x.id %}' class="thumbnail">
       {% if x.images.all.0 %}
       <img src="{{x.images.all.0.image.url}}" class="img-responsive" alt="Image Thumbnail">
       {%else%}
@@ -50,15 +52,15 @@
     </a>
   </div>
   <div class = 'col-md-9'>
-    <h3><a href = "#">{{ x.name }}</a></h3>
+    <h3><a  href='{% url 'event-detail' x.id %}'>{{ x.name }}</a></h3>
     <ul class = 'list-unstyled list-inline'>
-      <li><a href = "#">{{ x.address }} , {{ x.city }}, {{ x.state }}</a></li>
+      <li><a target = "_blank" href = "http://maps.google.com/?q={{x.address}}+{{x.city}}+{{x.state}}"> {{ x.address }}, {{ x.city }}, {{ x.state }}</a></li>
       <li><a href = "#"></a>{{ x.start }}</li>
-      <li><a href = "#">Hosted by {{ x.host }}</a></li>
+      <li><a href='{% url 'user-profile' x.host.pk %}'>Hosted by {{ x.host }}</a></li>
     </ul>
-    <p>{{ x.description }} <a href = "#">See More </a></p>
-  </div> 
- </div>
+    <p>{{ x.description }} <a href='{% url 'event-detail' x.id %}'>See More </a></p>
+  </div>
+</div>
 
 {% endfor %}
 <div class = "row" style="border-top: solid 1px;">
