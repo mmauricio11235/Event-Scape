@@ -6,7 +6,7 @@
 {% crispy form %}
 <!--Events from Database-->
 {% for obj in object_list %}
-
+{% if obj.approved == "A" %}
 <div class = 'row'>
   <div class="col-md-3">
 
@@ -28,6 +28,7 @@
     <p>{{ obj.description }} <a href='{% url 'event-detail' obj.id %}'>See More </a></p>
   </div>
 </div>
+{% endif %}
 {% endfor %}
 
 
