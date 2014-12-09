@@ -28,6 +28,9 @@ class Event(models.Model):
     attendees = models.ManyToManyField(User, related_name='attended_events')
     admin_comments = models.TextField(blank=True, null=True)
 
+    class Meta:
+        ordering = ['-start']
+
     def __str__(self):
         return self.name
 
