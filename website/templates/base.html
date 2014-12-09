@@ -6,10 +6,10 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     {% block css %}{% endblock %}
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{% static 'js/app.js' %}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.1/moment.min.js"></script>
 </head>
 <body style="background: url('http://desktopbackgroundshq.com/backgrounds/styles/larger/public/white-background-design-backgrounds-28564.jpg?itok=SR8GkMmR') no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -27,7 +27,7 @@
     padding: 0px 0px 5px 0px;  
     width: 50%;
     display:inline-block;">EventScape</h1>
-<a href='{% url 'event-search' %}'><img src="{% static 'Eventscape logo.jpg'%}"style="height: 6em; width: auto;display: inline-block;float:right;"/></a>
+<a href='{% url 'event-search' %}'><img src="{% static 'logo.jpg'%}"style="height: 6em; width: auto;display: inline-block;float:right;"/></a>
 {% if user.is_authenticated %}
 <a href='{% url 'user-profile' user.pk %}' style = "float: right; display: inline-block; margin-left: 15px;margin-top: 20px;font-size: 2em;">{{user.username}}</a>
 {% endif %}
