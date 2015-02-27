@@ -13,16 +13,14 @@ numEvents =0
 class User:
     tags = []
 
-
-
 class Event:
-    date = ""
-    location = ""
-    startTime = ""
-    endTime = ""
-    description = ""
-    link = ""
-    title=""
+    date = []
+    location = []
+    startTime = []
+    endTime = []
+    description = []
+    link = []
+    title=[]
     def __init__(self):
         global numEvents
         eventNumber = numEvents
@@ -31,19 +29,19 @@ class Event:
 
     '''Getter and setters for elements of event'''
     def getDate(self):
-        return self.date
+        return ' '.join(self.date)
     def getLocation(self):
-        return self.location
+        return ' '.join(self.location)
     def getStartTime(self):
-        return self.startTime
+        return ' '.join(self.startTime)
     def getEndTime(self):
-        return self.endTime
+        return ' '.join(self.endTime)
     def getLink(self):
-        return self.link
+        return ' '.join(self.link)
     def getTitle(self):
-        return self.title
+        return ' '.join(self.title)
     def getDescription(self):
-        return self.description
+        return ' '.join(self.description)
     def setDate(self, newDate):
         self.date = newDate
     def setLocation(self, newLocation):
@@ -63,6 +61,7 @@ class Event:
 
 
 
+# if __name__ == '__main__':
 def getevents():
     currLine = "none"
     currEvent = Event()
@@ -95,16 +94,16 @@ def getevents():
         elif(x == "Description"):
             newLine = cleanLine[1:]
             print("Description: " + newLine.__str__())
-            currEvent.setDescription(cleanLine)
+            currEvent.setDescription(newLine)
             currLine = "none"
         elif(x == "Location"):
             newLine = cleanLine[1:]
             print("Location: " + newLine.__str__())
-            currEvent.setLocation(cleanLine)
+            currEvent.setLocation(newLine)
             currLine = "none"
 
     for event in eventList:
-        print (event.getTitle())
+        print (event.getTitle() + '\n' + event.getDescription() + '\n \n')
 
     return eventList
 

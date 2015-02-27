@@ -24,9 +24,8 @@ def add_event(name, desc):
         start =datetime.datetime.now(),
         description = desc,
         approved = 'A')
-    #p = Event.objects.get_or_create(name=name)
     print("GOT HERE")
-    e.save()
+    #e.save()
     return e
 
 # Start execution here!
